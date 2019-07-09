@@ -1,4 +1,14 @@
 <?php
+/*
+Plugin Name: wp-pay-channels
+Plugin URI:
+Description: wordpress payment channels
+Version: 1.0.0
+Author: Saeed Torabi
+Author URI: https://saeedtrb.com
+License: MIT
+*/
+
 define('PAY_CHANNELS_PAY_REQUEST', 'pay_channels_pay_request');
 
 require_once 'includes/wp-pay-channels-create-transactions-table.php';
