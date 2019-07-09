@@ -241,7 +241,7 @@ class PayChannelTransaction
 }
 
 function wp_pay_channels_channel_selection( $atts ){
-    $channels = apply_filters('wp_pay_channels_getways', []);
+    $channels = apply_filters('wp_pay_channels_channels_options', []);
     ?>
     <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
         <?php foreach ($channels as $channel) {?>
