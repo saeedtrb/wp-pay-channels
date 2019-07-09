@@ -260,12 +260,13 @@ function pay_channels_pay_request() {
     $transaction = PayChannelTransactionFactory::makeWithArray($_POST);
 
     $transaction = PayChannelTransactionsRepository::createWithSetId($transaction);
+    $channelName = $transaction->getChannelName();
 
-    $transaction = apply_filters('${channel}_pay_channel_transaction', $transaction);
+    $transaction = apply_filters("{$channelName}_pay_channel_pay_request", $transaction);
     $transaction = PayChannelTransactionsRepository::update($transaction);
 
     $payForm = new PayChannelPayForm();
-    $payForm = apply_filters('${channel}_pay_channel_pay_form', $payForm, $transaction);
+    $payForm = apply_filters("{$channelName}_pay_channel_pay_form", $payForm, $transaction);
     #TODO: Submit payForm
     // Handle request then generate response using echo or leaving PHP and using HTML
 }
@@ -279,8 +280,9 @@ function pay_channels_pay_answer() {
         #TODO pay answer request not acceptable handle, transaction not found
     }
     $transaction->setStatus('');
+    $channel = $transaction->getChannelName();
 
-    $transaction = apply_filters('${channel}_pay_channel_pay_answer', $transaction);
+    $transaction = apply_filters("{$channel}_pay_channel_pay_answer", $transaction);
     $transaction = PayChannelTransactionsRepository::update($transaction);
 
     switch ($transaction->getStatus()){
@@ -293,7 +295,7 @@ function pay_channels_pay_answer() {
     }
     $transaction = PayChannelTransactionsRepository::update($transaction);
     if($transaction->getStatus() === PayChannelTransaction::STATUS_REFUNDS){
-        $transaction = apply_filters('${channel}_pay_channel_pay_refunds', $transaction);
+        $transaction = apply_filters("{$channel}_pay_channel_pay_refunds", $transaction);
     }
     $transaction = PayChannelTransactionsRepository::update($transaction);
     #TODO: redirect to owner callback
