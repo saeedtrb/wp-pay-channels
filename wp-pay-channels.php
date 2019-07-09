@@ -241,14 +241,6 @@ class PayChannelTransaction
 }
 
 function wp_pay_channels_channel_selection( $atts ){
-    $channels = [
-        [
-            'name' => 'credit',
-            'label' => 'اعتباری',
-            'image' => 'http://s.ir/mellat.jpg'
-        ]
-    ];
-
     $channels = apply_filters('wp_pay_channels_getways', []);
     ?>
     <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
