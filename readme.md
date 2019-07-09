@@ -1,5 +1,9 @@
-#actions
+# actions
 
-#filters
+# filters
+wp_pay_channels_channels_options
 
-#shortcodes
+{$channelName}_pay_channel_transaction
+{$channelName}_pay_channel_pay_form
+
+# shortcodes
